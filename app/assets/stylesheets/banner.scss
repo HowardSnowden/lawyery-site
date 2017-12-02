@@ -1,0 +1,60 @@
+
+
+#banner {
+	background-image: image-url('default_banner.jpg') !important;
+	background-size: cover !important;
+	background-repeat: no-repeat;
+     background-position: center center;
+		
+ .banner-content {
+ 	background-color: rgba(26, 91, 133, 0.81);  margin-top: -50px;
+	display: block; 
+	min-height: 300px; 
+	margin: -50px;
+
+		} 
+  .banner-action{
+  	color: white;
+  	text-decoration: none;
+   	
+  }
+    section {
+    	width: 80%; 
+    	margin: auto;
+      div {
+      	padding: 15px; 
+      	margin-left: 15px;
+
+     
+      	h2 {
+      		text-align: center; 
+      		font-size: 2.5em;
+      		letter-spacing: 2px;
+      		font-family:'Abril Fatface', cursive;
+      	}
+      	p {
+      		text-align:center; 
+      		font-size:1.3em;
+      		 margin: auto; 
+      		 margin-bottom: 15px;
+      		 color:  rgba(255, 255, 255, 0.75);
+      	}
+      	ul {
+      		text-align: center;
+      		max-width: 250px;
+      		margin: auto;
+      		margin-bottom: 15px;
+
+      	   li.contact-actions {
+      	   	text-align: center;
+      	   	border: whitesmoke 1px solid;
+      	   	padding: 5px;
+      	   	margin-top: 10px;
+      	   	font-size: 1.2em;
+
+      	   }
+      	}
+      
+      }
+    }
+	}
