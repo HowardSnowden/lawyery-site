@@ -2,7 +2,7 @@
 <html>
   <head>
     <title><%= @page.try(:meta_title) || 'Attorney Clement Pyles - Home' %></title>
-    <meta name='description' content="<%= @page.try(:meta_description) %>">
+    <meta name='description' content="<%= @page.page.try(:meta_description) %>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= csrf_meta_tags %>
 
