@@ -1,3 +1,28 @@
 // Place all the styles related to the Pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.footer-logo-container {
+  max-height: 150px;
+  text-align: center;
+  width: 100%;
+  text-overflow: hidden;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.spotlight .content.no-image {
+  text-align: left; 
+  width: 100%;
+}
+
+.success-message{
+  color: green;
+  background-color: #cdeccd;
+  text-align: center;
+  padding: 5px;
+  display: none;
+  border-radius: 5px;
+
+}

@@ -1,4 +1,11 @@
-
+      <style>
+      #banner{
+      	background-image: url("<%= image_url(@page.get_content('banner').section_image || '') %>") !important;
+        background-size: cover !important;
+	      background-repeat: no-repeat;
+        background-position: center center;
+      }
+    </style>
 		<!-- Banner -->
 			<section id="banner" >
 			   <div class="banner-background" >
@@ -9,9 +16,9 @@
 					
 						<p ><%= @page.get_content('banner').body %></p>
 						<ul class="contact">
-						  <li class="contact-actions"><a href="#" class="icon icon-phone banner-action">Call: 614-436-3701</a></li>
-						  <li class=" contact-actions"><a href="#" class="icon icon-map-marker banner-action">Office Location</a></li>
-						  <li class="contact-actions"><a href="#" class="icon icon-envelope banner-action">Contact</a></li>
+						  <li class="contact-actions"><a href="tel:1-614-436-3701" class="icon icon-phone banner-action">Call: 614-436-3701</a></li>
+						  <li class=" contact-actions"><a href="#office-location" class="icon icon-map-marker banner-action">Office Location</a></li>
+						  <li class="contact-actions"><a href="#contact-form" class="icon icon-envelope banner-action">Contact</a></li>
 						</ul>
 					
 					 </div>
@@ -27,19 +34,19 @@
 				<div class="inner split">
 
 					<section>
-						<h2><%=@page.get_content('main').header%></h2>
+						<% main_content = @page.get_content('main') %>
+						<h2> <%=main_content.header%></h2>
 						<p><%= @page.main_content_format%></p>
+						<% if main_content.more_details_link.present? %> 
 						<ul class="actions">
-							<li><a href="#" class="button alt">Learn more</a></li>
+						
+							<li><%= link_to 'Learn More', main_content.more_details_link, class: 'button alt' %> </li>
 						</ul>
+						<% end %>
 					</section>
 					<section>
 						<ul class="checklist">
-							<li>Ipsum nisl sed cursus magna</li>
-							<li>Amet veroeros sed aliquam consequat</li>
-							<li>Tempus lorem adipiscing et lorem</li>
-							<li>Morbi pharetra vitae felis placerat</li>
-							<li>Pharetra nulla risus orci dapibus</li>
+							<%= main_content.formatted_list_items%> 
 						</ul>
 					</section>
 				</div>
@@ -48,89 +55,138 @@
 		<!-- Two -->
 			<section id="two" class="wrapper style2 alt">
 				<div class="inner">
+
+					<% @page.body_sections.each do |section| %>
 					<div class="spotlight">
+						<% if section.section_image %>
 						<div class="image">
-							<%= image_tag('pic01') %>
+							<%= image_tag section.section_image %>
 						</div>
-						<div class="content">
-							<h3>Ipsum pharetra tempus</h3>
-							<p>Lorem ipsum nisl sed cursus magna et amet veroeros. Sed phasellus malesuada quis orci. Pellentesque eget consequat.</p>
+					 <% elsif section.list_items.present?  %>
+
+					    <div class='image'>
+					    <h3 style="margin: 25px"><%= section.sub_header %></h3>
+					    <ul class='checklist' style='margin: 25px' >
+					    	<%= section.formatted_list_items %> 
+					    </ul>	
+					  </div>
+
+					 <% end %>
+						<div  style="overflow-y: scroll" class="content <%= (section.section_image || section.list_items.present?) ? '' : 'no-image' %>">
+
+							<h3><%= section.header %></h3>
+							<%= section.formatted_body('p')  %> 
+							<% if section.more_details_link.present? %> 
 							<ul class="actions">
-								<li><a href="#" class="button alt">Details</a></li>
+								<li><%= link_to "Details", section.more_details_link, class: "button alt"%></li>
 							</ul>
+							<% end %> 
 						</div>
 					</div>
-					<div class="spotlight">
-						<div class="image">
-							<%= image_tag('pic02') %>
-						</div>
-						<div class="content">
-							<h3>Magna consequat felis</h3>
-							<p>Lorem ipsum nisl sed cursus magna et amet veroeros. Sed phasellus malesuada quis orci. Pellentesque eget consequat.</p>
-							<ul class="actions">
-								<li><a href="#" class="button alt">Details</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="spotlight">
-						<div class="image">
-							<%= image_tag('pic03') %>
-						</div>
-						<div class="content">
-							<h3>Vitae placerat adipiscing</h3>
-							<p>Lorem ipsum nisl sed cursus magna et amet veroeros. Sed phasellus malesuada quis orci. Pellentesque eget consequat.</p>
-							<ul class="actions">
-								<li><a href="#" class="button alt">Details</a></li>
-							</ul>
-						</div>
-					</div>
-					<ul class="actions special">
-						<li><a href="#" class="button alt">Ipsum magna tempus</a></li>
-					</ul>
+				<% end %> 
+		
 				</div>
 			</section>
 
 		<!-- Contact -->
 			<section id="contact" class="wrapper">
 				<div class="inner split">
-					<section>
-						<h2>Orci malesuada</h2>
-						<p>Morbi pharetra vitae felis placerat pharetra. Nulla risus orci, dapibus id malesuada et nec, malesuada quis pellentesque eget.</p>
-						<form action="#" class="alt" method="POST">
+					<section id="contact-form">
+						<h2>Contact the Attorney</h2>
+						<p>Provide a brief description of your issue and your contact information. I will get back to you as soon as possible.</p>
+						<!-- <form action="#" class="alt" method="POST"> -->
+							<%= form_tag "/contact", method: :post, remote: :true do  %> 
+							<p class="success-message" style="color: green"> Success </p>
 							<div class="row uniform">
-								<div class="6u 12u$(xsmall)">
-									<input name="name" placeholder="Name" type="text">
+								<div class="6u 12u$(xsmall) name-field">
+									<input name="contact[name]" placeholder="Name" type="text">
 								</div>
-								<div class="6u$ 12u$(xsmall)">
-									<input name="email" placeholder="Email" type="email">
+
+								<div class="6u$ 12u$(xsmall) phone-field">
+									<input name="contact[phone]" placeholder="555-555-5555 (optional)" type="tel">
 								</div>
-								<div class="12u$">
-									<textarea name="message" placeholder="Message" rows="4"></textarea>
+								<div class="12u$ email-field">
+									<input name="contact[email]" placeholder="Email" type="email">
+							  </div>
+								<div class="12u$ message-field">
+									<textarea name="contact[message]" placeholder="Message" rows="4"></textarea>
  								</div>
  							</div>
  							<ul class="actions">
- 								<li><input class="alt" value="Send message" type="submit"></li>
+ 								<li><%= submit_tag "Send Message",  data: {disable_with: 'Please wait...'}, class: 'alt', id:'submit-form' %> </li>
  							</ul>
- 						</form>
+ 						<% end %> 
 					</section>
-					<section>
-						<ul class="contact">
-							<li class="icon-twitter"><a href="#">twitter.com/untitled-tld</a></li>
-							<li class="icon-facebook"><a href="#">facebook.com/untitled-tld</a></li>
-							<li class="icon-instagram"><a href="#">instagram.com/untitled-tld</a></li>
-							<li class="icon-envelope"><a href="#">information@untitled.tld</a></li>
-							<li class="icon-home">1234 Somewhere Road Suite 9823<br/>Nashville, TN 00000-0000</li>
+					<section id='office-location'>
+						<h2>Location </h2>
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3053.19047010999!2d-82.98278988465202!3d40.071163284507456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88388b68cc285e29%3A0xa8a67bfddb827420!2s1405+Fahlander+Dr+N%2C+Columbus%2C+OH+43229!5e0!3m2!1sen!2sus!4v1512247821034" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+						<ul class="contact" >
+							<li class="icon-home">1405 Fahlander Dr. North <br/>Columbus, OH 43229</li>
 						</ul>
 					</section>
 				</div>
+					<ul class="actions special">
+						<li><a href="#" class="button alt">Back To Top</a></li>
+					</ul>
 			</section>
 
 		<!-- Footer -->
 			<footer id="footer">
+				<div class='footer-logo-container'>
+				<%= image_tag 'columbus-bar-logo', height: 75 %> 
+				<%= image_tag 'ohio_bar_logo', height: 75 %>
+			</div>
 				<div class="copyright">
-					&copy; Untitled. All rights reserved. Images: <a href="http://unsplash.com">Unsplash</a>. Design: <a href="http://templated.co">TEMPLATED</a>.
+					&copy; <%= Date.today.year %> by The Office of Clement Pyles. All rights reserved. 
 				</div>
 			</footer>
 
-		<!-- Scripts -->
+		<!-- Script\s -->
 		
+		<script>
+
+			$(document).ready(function(){
+
+ 				 	$("#contact-form .phone-field input[type='tel']").keypress(function(e) {
+         if (e.keyCode !== 8 && e.keyCode !== 46){
+          
+         	if (isNaN(String.fromCharCode(event.which))){
+           event.preventDefault(); //stop character from entering input
+           }
+
+          var curchr = this.value.length;
+					var curval = $(this).val();
+					var formatp = curval.match(/\(\d{2}/); 
+					if (curchr >= 12 ){
+
+						$(this).val(curval.substring(0,11));
+						
+					}           
+         if (curchr == 3 && formatp === null) {
+			     $(this).val(curval + "-");
+			     } 
+          else if (curchr == 4 && formatp){
+            $(this).val(curval + ")-");
+        }
+        else if (curchr == 7 && formatp === null) {
+			     $(this).val(curval + "-");
+			   }
+        
+        else if (curchr == 9 && formatp){
+            $(this).val(curval + "-");
+        }
+         }
+	   });
+ 
+ 				 resizeContent();
+
+			});
+
+			$(window).resize(resizeContent());
+
+       function resizeContent(){
+       		$('#two .image + .content').each(function(i, v){
+ 				 		$(this).css('min-height', $(this).parent().find('.image').outerHeight());
+ 				 	});
+       }
+		</script>

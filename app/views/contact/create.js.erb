@@ -1,0 +1,10 @@
+$('#submit-form').removeAttr('data-disable-with');
+$('#submit-form').prop('disabled', true);
+$('#submit-form').prop('value', 'Send Message');
+
+
+$("[class*='error-container']").remove();
+
+
+$('.success-message').html("Successfully sent message! You will be contacted as soon as possible");
+$('.success-message').show();

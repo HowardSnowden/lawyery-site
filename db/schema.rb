@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170808202753) do
+ActiveRecord::Schema.define(version: 20171202213337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,9 +38,12 @@ ActiveRecord::Schema.define(version: 20170808202753) do
     t.string   "sub_header"
     t.text     "body"
     t.integer  "layout_type"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.integer  "page_id"
+    t.string   "more_details_link"
+    t.string   "section_image"
+    t.text     "list_items"
   end
 
   create_table "links", force: :cascade do |t|
@@ -54,9 +57,12 @@ ActiveRecord::Schema.define(version: 20170808202753) do
   create_table "pages", force: :cascade do |t|
     t.string   "title"
     t.integer  "content_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "layout_type"
+    t.text     "meta_description"
+    t.string   "meta_title"
+    t.boolean  "should_show_banner"
   end
 
 end

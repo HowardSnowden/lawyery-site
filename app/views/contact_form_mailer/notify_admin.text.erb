@@ -1,0 +1,12 @@
+
+<%="You have receieved an inquiry from #{@name}\n\r"%>
+
+ Email:  <%= "#{@email} \n\r"  %> 
+ Phone:  <%= "#{@phone || 'Not supplied'} \n\r"  %> 
+ Message: <%= "\n\r" %>
+<% @message.split(/\n/).each do |para| %> 
+
+<%= "#{para} \n\r" %>
+
+<% end %>
+

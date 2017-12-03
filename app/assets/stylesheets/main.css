@@ -1850,6 +1850,7 @@
 	input[type="text"],
 	input[type="password"],
 	input[type="email"],
+	input[type="tel"],
 	select,
 	textarea {
 		-moz-appearance: none;
@@ -1910,6 +1911,8 @@
 	input[type="text"],
 	input[type="password"],
 	input[type="email"],
+	input[type="tel"],
+
 	select {
 		height: 2.75em;
 	}
@@ -2009,6 +2012,7 @@
 	input[type="text"],
 	input[type="password"],
 	input[type="email"],
+	input[type="tel"],
 	select,
 	textarea {
 		background: rgba(144, 144, 144, 0.075);
@@ -2018,6 +2022,7 @@
 		input[type="text"]:focus,
 		input[type="password"]:focus,
 		input[type="email"]:focus,
+		input[type="tel"]:focus,
 		select:focus,
 		textarea:focus {
 			border-color: #00BC8A;
@@ -2075,6 +2080,7 @@
 	form.alt input[type="text"],
 	form.alt input[type="password"],
 	form.alt input[type="email"],
+	 form.alt  input[type="tel"],
 	form.alt select,
 	form.alt textarea {
 		background-color: transparent;
@@ -2800,6 +2806,7 @@
 			.wrapper.style1 input[type="text"],
 			.wrapper.style1 input[type="password"],
 			.wrapper.style1 input[type="email"],
+			.wrapper.style1 input[type="tel"],
 			.wrapper.style1 select,
 			.wrapper.style1 textarea {
 				background: rgba(255, 255, 255, 0.075);
@@ -2809,6 +2816,7 @@
 				.wrapper.style1 input[type="text"]:focus,
 				.wrapper.style1 input[type="password"]:focus,
 				.wrapper.style1 input[type="email"]:focus,
+				.wrapper.style1 input[type="tel"]:focus,
 				.wrapper.style1 select:focus,
 				.wrapper.style1 textarea:focus {
 					border-color: #ffffff;
@@ -2866,6 +2874,7 @@
 			.wrapper.style1 form.alt input[type="text"],
 			.wrapper.style1 form.alt input[type="password"],
 			.wrapper.style1 form.alt input[type="email"],
+			.wrapper.style1 form.alt input[type="tel"],
 			.wrapper.style1 form.alt select,
 			.wrapper.style1 form.alt textarea {
 				background-color: transparent;
@@ -3037,6 +3046,7 @@
 			.wrapper.style2 input[type="text"],
 			.wrapper.style2 input[type="password"],
 			.wrapper.style2 input[type="email"],
+			.wrapper.style2 input[type="tel"],
 			.wrapper.style2 select,
 			.wrapper.style2 textarea {
 				background: rgba(144, 144, 144, 0.075);
@@ -3046,6 +3056,7 @@
 				.wrapper.style2 input[type="text"]:focus,
 				.wrapper.style2 input[type="password"]:focus,
 				.wrapper.style2 input[type="email"]:focus,
+				.wrapper.style1 input[type="tel"]:focus,
 				.wrapper.style2 select:focus,
 				.wrapper.style2 textarea:focus {
 					border-color: #00BC8A;
@@ -3103,6 +3114,7 @@
 			.wrapper.style2 form.alt input[type="text"],
 			.wrapper.style2 form.alt input[type="password"],
 			.wrapper.style2 form.alt input[type="email"],
+			.wrapper.style2 form.alt  input[type="tel"],
 			.wrapper.style2 form.alt select,
 			.wrapper.style2 form.alt textarea {
 				background-color: transparent;

@@ -10,6 +10,8 @@ class Page < ApplicationRecord
 		field :title
 		field :layout_type
 		field :contents
+		field :meta_description
+		field :meta_title
 	end
 
 

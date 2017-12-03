@@ -1,0 +1,17 @@
+
+
+var form_errors = JSON.parse("<%=  j  @c.errors.messages.to_json.html_safe %>");
+
+$(Object.keys(form_errors)).each(function(i, v){
+  
+  var error_html = "";
+  $('.error-container' + '-' + v).remove();
+  var error_container = $("<span class='error-container" + "-" + v + "'"  +" style='color: red'> </span>");
+
+  
+  $(form_errors[v]).each(function(ind, err) {
+   error_html += "&nbsp;<span>"+ err + "</span>"} );
+  error_container.html(error_html);
+  $('#contact-form .' + v + '-field').append(error_container);
+});
+

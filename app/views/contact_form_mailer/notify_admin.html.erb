@@ -1,0 +1,13 @@
+
+<h3><%="You have receieved an inquiry from #{@name}"%></h3>
+
+<p><strong>Email:</strong>  <%= @email %></p>
+<p><strong>Phone: </strong> <%= @phone || 'Not supplied' %></p>
+
+<p><strong>Message: </strong></p>
+<% @message.split(/\n/).each do |para| %> 
+
+<p style='font-style: italic'><%= para %></p>
+
+<% end %>
+

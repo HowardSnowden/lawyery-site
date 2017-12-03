@@ -2,7 +2,7 @@ class PageNotFound < StandardError; end
 class PageService
     attr_accessor :page, :render
 	def initialize(page_name, **params)
-      @page = Page.where('lower(title) = ?', page_name.downcase).first
+      @page = Page.where('lower(title) = ?', page_name.downcase).first || 
       if !@page
       	raise PageNotFound
       end
@@ -18,9 +18,13 @@ class PageService
      content
    end
 
+  def body_sections
+    @page.contents.where("title != :main AND title != :banner", {main: 'main', banner: 'banner'})
+  end
+
    def main_content_format
      result = get_content('main') do |c|
-      c.body = c.body.split(' ').map{|m| "<b>#{m}</b>"}.join(' ')
+      c.body = c.body.split(' ').map{|m| "<b>#{m}</b>"}.join(' ') rescue ""
      end
       result.body.html_safe
    end

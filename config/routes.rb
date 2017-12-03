@@ -6,4 +6,6 @@ Rails.application.routes.draw do
  resources :pages, only: [:index]
   match "/*page_name", to: 'pages#show', page_name: /(?!attorney_portal)[a-zA-Z]+/, via: [:get]
   root 'pages#index'
+
+  post 'contact', to: 'contact#create'
 end
