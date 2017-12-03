@@ -2,7 +2,7 @@ class Content < ApplicationRecord
 	belongs_to :page 
   include ActionView::Helpers 
   before_save :remove_image_if_blank
-
+  default_scope {order(order: :asc)}
 
   def section_image_enum
     image_path = Rails.root.to_s + "/app/assets/images"
