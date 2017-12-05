@@ -3,8 +3,13 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-body {
+body, html {
+  overflow-x: hidden;
 
+}
+
+body{
+  position: relative;
 }
 .footer-logo-container {
   max-height: 150px;
