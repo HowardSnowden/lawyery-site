@@ -3,13 +3,16 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+body {
+  overflow-x: hidden !important;
+}
 .footer-logo-container {
   max-height: 150px;
   text-align: center;
   width: 100%;
   text-overflow: hidden;
   margin-top: 25px;
-  margin-bottom: 25px;
+  margin-bottom: 50px;
 }
 
 .spotlight .content.no-image {
