@@ -3,7 +3,8 @@
   <head>
     <title><%= @page.try(:meta_title) || 'Attorney Clement Pyles - Home' %></title>
     <meta name='description' content="<%= @page.try(:page).try(:meta_description) %>">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
