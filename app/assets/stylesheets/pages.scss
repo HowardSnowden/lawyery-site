@@ -48,3 +48,19 @@ body{
     width:100%;
     position:absolute;
 }
+
+@media screen and (min-width: 600px){
+
+.spotlight{
+  display: flex; 
+  flex-direction: row;
+  align-items: flex-start; 
+
+}
+.spotlight .image{
+  margin-top: 75px;
+
+}
+
+}
+
