@@ -60,6 +60,7 @@
 					<div class="spotlight">
 						<% if section.section_image %>
 						<div class="image">
+							<h3 style="margin: 25px"><%= section.sub_header || "&nbsp;".html_safe%></h3>
 							<%= image_tag section.section_image %>
 						</div>
 					 <% elsif section.list_items.present?  %>
