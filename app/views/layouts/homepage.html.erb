@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= @page.try(:meta_title) || 'Attorney Clement Pyles - Home' %></title>
+    <meta name='description' content="<%= @page.try(:page).try(:meta_description) %>">
+    <meta name="viewport" content=" width=device-width, initial-scale=1.0" />
+ 
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+<style>
+#banner{
+  background-image: url("<%= image_url(@page.get_content('banner').section_image || '') %>") !important;
+  background-size: cover !important;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+</style>
+<!-- Banner -->
+<section id="banner" >
+  <div class="banner-background" >
+    <div  class="banner-content">
+      <section>
+        <div>
+          <h1>Clement W. Pyles, Attorney At Law</h1>
+
+          <p ><%= @page.get_content('banner').body %></p>
+          <ul class="contact">
+            <li class="contact-actions"><a href="tel:1-614-436-3701" class="icon icon-phone banner-action">Call: 614-436-3701</a></li>
+            <li class=" contact-actions"><a href="#office-location" class="icon icon-map-marker banner-action">Office Location</a></li>
+            <li class="contact-actions"><a href="#contact-form" class="icon icon-envelope banner-action">Contact</a></li>
+          </ul>
+
+        </div>
+      </section>
+
+    </div>
+
+  </div>
+</section>
+
+
+    <%= yield %>
+  </body>
+</html>
+

@@ -1,197 +1,168 @@
-      <style>
-      #banner{
-      	background-image: url("<%= image_url(@page.get_content('banner').section_image || '') %>") !important;
-        background-size: cover !important;
-	      background-repeat: no-repeat;
-        background-position: center center;
-      }
-    </style>
-		<!-- Banner -->
-			<section id="banner" >
-			   <div class="banner-background" >
-				<div  class="banner-content">
-					<section>
-					  <div>
-						<h1>Clement W. Pyles, Attorney At Law</h1>
-					
-						<p ><%= @page.get_content('banner').body %></p>
-						<ul class="contact">
-						  <li class="contact-actions"><a href="tel:1-614-436-3701" class="icon icon-phone banner-action">Call: 614-436-3701</a></li>
-						  <li class=" contact-actions"><a href="#office-location" class="icon icon-map-marker banner-action">Office Location</a></li>
-						  <li class="contact-actions"><a href="#contact-form" class="icon icon-envelope banner-action">Contact</a></li>
-						</ul>
-					
-					 </div>
-					</section>
-			
-				</div>
-					
-			  </div>
-			</section>
+<!-- One -->
+<% main_content = @page.get_content('main') %>
+<% unless main_content.header.blank? %> 
+<section id="one" class="wrapper">
+  <div class="inner split">
 
-		<!-- One -->
-			<section id="one" class="wrapper">
-				<div class="inner split">
+    <section>
+      <h2> <%=main_content.header%></h2>
+      <p><%= @page.main_content_format%></p>
+      <% if main_content.more_details_link.present? %> 
+        <ul class="actions">
 
-					<section>
-						<% main_content = @page.get_content('main') %>
-						<h2> <%=main_content.header%></h2>
-						<p><%= @page.main_content_format%></p>
-						<% if main_content.more_details_link.present? %> 
-						<ul class="actions">
-						
-							<li><%= link_to 'Learn More', main_content.more_details_link, class: 'button alt' %> </li>
-						</ul>
-						<% end %>
-					</section>
-					<section>
-						<ul class="checklist">
-							<%= main_content.formatted_list_items%> 
-						</ul>
-					</section>
-				</div>
-			</section>
+          <li><%= link_to 'Learn More', main_content.more_details_link, class: 'button alt' %> </li>
+        </ul>
+      <% end %>
+    </section>
+    <section>
+      <ul class="checklist">
+        <%= main_content.formatted_list_items%> 
+      </ul>
+    </section>
+  </div>
+</section>
+<% end %> 
 
-		<!-- Two -->
-			<section id="two" class="wrapper style2 alt">
-				<div class="inner">
+<!-- Two -->
+<section id="two" class="wrapper style2 alt">
+  <div class="inner">
 
-					<% @page.body_sections.each do |section| %>
-					<div class="spotlight">
-						<% if section.section_image %>
-						<div class="image">
-							<h3 style="margin: 25px"><%= section.sub_header || "&nbsp;".html_safe%></h3>
-							<%= image_tag section.section_image %>
-						</div>
-					 <% elsif section.list_items.present?  %>
+    <% @page.body_sections.each do |section| %>
+      <div class="spotlight">
+        <% if section.section_image %>
+          <div class="image">
+            <h3 style="margin: 25px"><%= section.sub_header || "&nbsp;".html_safe%></h3>
+            <%= image_tag section.section_image %>
+          </div>
+        <% elsif section.list_items.present?  %>
 
-					    <div class='image'>
-					    <h3 style="margin: 25px"><%= section.sub_header %></h3>
-					    <ul class='checklist' style='margin: 25px' >
-					    	<%= section.formatted_list_items %> 
-					    </ul>	
-					  </div>
+          <div class='image'>
+            <h3 style="margin: 25px"><%= section.sub_header %></h3>
+            <ul class='checklist' style='margin: 25px' >
+              <%= section.formatted_list_items %> 
+            </ul>	
+          </div>
 
-					 <% end %>
-						<div  style="overflow-y: scroll" class="content <%= (section.section_image || section.list_items.present?) ? '' : 'no-image' %>">
+        <% end %>
+        <div  style="overflow-y: scroll" class="content <%= (section.section_image || section.list_items.present?) ? '' : 'no-image' %>">
 
-							<h3><%= section.header %></h3>
-							<%= section.formatted_body('p')  %> 
-							<% if section.more_details_link.present? %> 
-							<ul class="actions">
-								<li><%= link_to "Details", section.more_details_link, class: "button alt"%></li>
-							</ul>
-							<% end %> 
-						</div>
-					</div>
-				<% end %> 
-		
-				</div>
-			</section>
+          <h3><%= section.header %></h3>
+          <%= section.formatted_body('p')  %> 
+          <% if section.more_details_link.present? %> 
+            <ul class="actions">
+              <li><%= link_to "Details", section.more_details_link, class: "button alt"%></li>
+            </ul>
+          <% end %> 
+        </div>
+      </div>
+    <% end %> 
 
-		<!-- Contact -->
-			<section id="contact" class="wrapper">
-				<div class="inner split">
-					<section id="contact-form">
-						<h2>Contact the Attorney</h2>
-						<p>Provide a brief description of your issue and your contact information. I will get back to you as soon as possible.</p>
-						<!-- <form action="#" class="alt" method="POST"> -->
-							<%= form_tag "/contact", method: :post, remote: :true do  %> 
-							<p class="success-message" style="color: green"> Success </p>
-							<div class="row uniform">
-								<div class="6u 12u$(xsmall) name-field">
-									<input name="contact[name]" placeholder="Name" type="text">
-								</div>
+  </div>
+</section>
 
-								<div class="6u$ 12u$(xsmall) phone-field">
-									<input name="contact[phone]" placeholder="555-555-5555 (optional)" type="tel">
-								</div>
-								<div class="12u$ email-field">
-									<input name="contact[email]" placeholder="Email" type="email">
-							  </div>
-								<div class="12u$ message-field">
-									<textarea name="contact[message]" placeholder="Message" rows="4"></textarea>
- 								</div>
- 							</div>
- 							<ul class="actions">
- 								<li><%= submit_tag "Send Message",  data: {disable_with: 'Please wait...'}, class: 'alt', id:'submit-form' %> </li>
- 							</ul>
- 						<% end %> 
-					</section>
-					<section id='office-location'>
-						<h2>Location</h2>
-						<p>Interviews by appointment only</p>
-						<div class='map-responsive'>
-						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3053.19047010999!2d-82.98278988465202!3d40.071163284507456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88388b68cc285e29%3A0xa8a67bfddb827420!2s1405+Fahlander+Dr+N%2C+Columbus%2C+OH+43229!5e0!3m2!1sen!2sus!4v1512247821034" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-					</div>
-						<ul class="contact" >
-							<li class="icon-home">1405 Fahlander Dr. North <br/>Columbus, OH 43229</li>
-						</ul>
-					</section>
-				</div>
-					<ul class="actions special">
-						<li><a href="#" class="button alt">Back To Top</a></li>
-					</ul>
-			</section>
+<!-- Contact -->
+<section id="contact" class="wrapper">
+  <div class="inner split">
+    <section id="contact-form">
+      <h2>Contact the Attorney</h2>
+      <p>Provide a brief description of your issue and your contact information. I will get back to you as soon as possible.</p>
+      <!-- <form action="#" class="alt" method="POST"> -->
+      <%= form_tag "/contact", method: :post, remote: :true do  %> 
+        <p class="success-message" style="color: green"> Success </p>
+        <div class="row uniform">
+          <div class="6u 12u$(xsmall) name-field">
+            <input name="contact[name]" placeholder="Name" type="text">
+          </div>
 
-		<!-- Footer -->
-			<footer id="footer">
-				<div class='footer-logo-container'>
-					<p style="text-align: center">Member of: </p>
-				<%= image_tag 'columbus-bar-logo', height: 75 %> 
-				<%= image_tag 'ohio_bar_logo', height: 75 %>
-			</div>
-				<div class="copyright">
-					&copy; <%= Date.today.year %> by The Office of Clement Pyles. All rights reserved. 
-				</div>
-			</footer>
+          <div class="6u$ 12u$(xsmall) phone-field">
+            <input name="contact[phone]" placeholder="555-555-5555 (optional)" type="tel">
+          </div>
+          <div class="12u$ email-field">
+            <input name="contact[email]" placeholder="Email" type="email">
+          </div>
+          <div class="12u$ message-field">
+            <textarea name="contact[message]" placeholder="Message" rows="4"></textarea>
+          </div>
+        </div>
+        <ul class="actions">
+          <li><%= submit_tag "Send Message",  data: {disable_with: 'Please wait...'}, class: 'alt', id:'submit-form' %> </li>
+        </ul>
+      <% end %> 
+    </section>
+    <section id='office-location'>
+      <h2>Location</h2>
+      <p>Interviews by appointment only</p>
+      <div class='map-responsive'>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3053.19047010999!2d-82.98278988465202!3d40.071163284507456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88388b68cc285e29%3A0xa8a67bfddb827420!2s1405+Fahlander+Dr+N%2C+Columbus%2C+OH+43229!5e0!3m2!1sen!2sus!4v1512247821034" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+      </div>
+      <ul class="contact" >
+        <li class="icon-home">1405 Fahlander Dr. North <br/>Columbus, OH 43229</li>
+      </ul>
+    </section>
+  </div>
+  <ul class="actions special">
+    <li><a href="#" class="button alt">Back To Top</a></li>
+  </ul>
+</section>
 
-		<!-- Script\s -->
-		
-		<script>
+<!-- Footer -->
+<footer id="footer">
+  <div class='footer-logo-container'>
+    <p style="text-align: center">Member of: </p>
+    <%= image_tag 'columbus-bar-logo', height: 75 %> 
+    <%= image_tag 'ohio_bar_logo', height: 75 %>
+  </div>
+  <div class="copyright">
+    &copy; <%= Date.today.year %> by The Office of Clement Pyles. All rights reserved. 
+  </div>
+</footer>
 
-			$(document).ready(function(){
+<!-- Script\s -->
 
- 				 	$("#contact-form .phone-field input[type='tel']").keypress(function(e) {
-         if (e.keyCode !== 8 && e.keyCode !== 46){
-          
-         	if (isNaN(String.fromCharCode(event.which))){
-           event.preventDefault(); //stop character from entering input
-           }
+<script>
 
-          var curchr = this.value.length;
-					var curval = $(this).val();
-					var formatp = curval.match(/\(\d{2}/); 
-					if (curchr >= 12 ){
+  $(document).ready(function(){
 
-						$(this).val(curval.substring(0,11));
-						
-					}           
-         if (curchr == 3 && formatp === null) {
-			     $(this).val(curval + "-");
-			     } 
-          else if (curchr == 4 && formatp){
-            $(this).val(curval + ")-");
+    $("#contact-form .phone-field input[type='tel']").keypress(function(e) {
+      if (e.keyCode !== 8 && e.keyCode !== 46){
+
+        if (isNaN(String.fromCharCode(event.which))){
+          event.preventDefault(); //stop character from entering input
+        }
+
+        var curchr = this.value.length;
+        var curval = $(this).val();
+        var formatp = curval.match(/\(\d{2}/); 
+        if (curchr >= 12 ){
+
+          $(this).val(curval.substring(0,11));
+
+        }           
+        if (curchr == 3 && formatp === null) {
+          $(this).val(curval + "-");
+        } 
+        else if (curchr == 4 && formatp){
+          $(this).val(curval + ")-");
         }
         else if (curchr == 7 && formatp === null) {
-			     $(this).val(curval + "-");
-			   }
-        
-        else if (curchr == 9 && formatp){
-            $(this).val(curval + "-");
+          $(this).val(curval + "-");
         }
-         }
-	   });
- 
- 				 resizeContent();
 
-			});
+        else if (curchr == 9 && formatp){
+          $(this).val(curval + "-");
+        }
+      }
+    });
 
-			$(window).resize(resizeContent());
+    resizeContent();
 
-       function resizeContent(){
-       		$('#two .image + .content').each(function(i, v){
- 				 		$(this).css('min-height', $(this).parent().find('.image').outerHeight());
- 				 	});
-       }
-		</script>
+  });
+
+$(window).resize(resizeContent());
+
+function resizeContent(){
+  $('#two .image + .content').each(function(i, v){
+    $(this).css('min-height', $(this).parent().find('.image').outerHeight());
+  });
+}
+</script>
